@@ -108,13 +108,13 @@ class BusTableViewController: UITableViewController {
         return image
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let rowData = self.tableData[indexPath.row]
-        var route_short_name: NSString = rowData["route_short_name"] as! NSString
-        var route_id: NSString = rowData["route_id"] as! NSString
-        println("Hai premuto \(route_short_name) con route_id \(route_id)")
-        
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let rowData = self.tableData[indexPath.row]
+//        var route_short_name: NSString = rowData["route_short_name"] as! NSString
+//        var route_id: NSString = rowData["route_id"] as! NSString
+//        println("Hai premuto \(route_short_name) con route_id \(route_id)")
+//        
+//    }
     
     func sortFunc(num1: Int, num2: Int) -> Bool {
         return num1 < num2
@@ -208,14 +208,26 @@ class BusTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ShowBusDetail"{
+            let detailBusController = segue.destinationViewController as! BusDetailTableViewController
+            let myIndexPath = self.tableView.indexPathForSelectedRow()
+            let row = myIndexPath?.row
+            let rowData = self.tableData[row!]
+            var route_short_name: NSString = rowData["route_short_name"] as! NSString
+            var route_id: NSString = rowData["route_id"] as! NSString
+            let tmp = "Hai premuto \(route_short_name) con route_id \(route_id)"
+            detailBusController.tmp_string = tmp
+        }
+        
     }
-    */
+    
 
 }
