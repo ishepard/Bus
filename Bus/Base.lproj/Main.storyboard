@@ -1,7 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tXf-Mb-FlJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Bus Table View Controller-->
+        <scene sceneID="Cos-QN-DEc">
+            <objects>
+                <tableViewController id="tXf-Mb-FlJ" customClass="BusTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="22" sectionFooterHeight="22" id="OSx-Rk-uJU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BusTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusTableCell" rowHeight="89" id="mir-LG-7eF" customClass="BusTableViewCell" customModule="Bus" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="22" width="320" height="89"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mir-LG-7eF" id="oH6-h9-ewc">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JB4-rF-6p2">
+                                            <rect key="frame" x="8" y="4" width="84" height="80"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="bus" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peg-SW-LTm">
+                                            <rect key="frame" x="8" y="4" width="84" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="84" id="7tk-AD-B73"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="57j-mZ-BkM">
+                                            <rect key="frame" x="100" y="8" width="492" height="72"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="57j-mZ-BkM" firstAttribute="bottom" secondItem="oH6-h9-ewc" secondAttribute="bottomMargin" id="5BY-4M-aZM"/>
+                                        <constraint firstItem="peg-SW-LTm" firstAttribute="top" secondItem="JB4-rF-6p2" secondAttribute="top" id="6QE-35-V9C"/>
+                                        <constraint firstItem="peg-SW-LTm" firstAttribute="leading" secondItem="oH6-h9-ewc" secondAttribute="leadingMargin" constant="-7" id="Azc-0O-DSC"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="57j-mZ-BkM" secondAttribute="trailing" constant="-7" id="D6C-Pg-AMQ"/>
+                                        <constraint firstItem="JB4-rF-6p2" firstAttribute="top" secondItem="oH6-h9-ewc" secondAttribute="topMargin" constant="-4" id="aKE-T2-Kee"/>
+                                        <constraint firstItem="57j-mZ-BkM" firstAttribute="leading" secondItem="JB4-rF-6p2" secondAttribute="trailing" constant="8" symbolic="YES" id="b7y-ha-GiE"/>
+                                        <constraint firstItem="JB4-rF-6p2" firstAttribute="leading" secondItem="peg-SW-LTm" secondAttribute="leading" id="cgf-ik-Na2"/>
+                                        <constraint firstItem="JB4-rF-6p2" firstAttribute="bottom" secondItem="peg-SW-LTm" secondAttribute="bottom" id="fx4-ff-F3k"/>
+                                        <constraint firstItem="57j-mZ-BkM" firstAttribute="leading" secondItem="peg-SW-LTm" secondAttribute="trailing" constant="8" symbolic="YES" id="h4I-Sv-dsq"/>
+                                        <constraint firstItem="57j-mZ-BkM" firstAttribute="top" secondItem="oH6-h9-ewc" secondAttribute="topMargin" id="kHc-qY-bcn"/>
+                                        <constraint firstItem="JB4-rF-6p2" firstAttribute="centerY" secondItem="57j-mZ-BkM" secondAttribute="centerY" id="wS8-Qk-F6a"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busImage" destination="JB4-rF-6p2" id="XHr-r3-wPs"/>
+                                    <outlet property="busLabel" destination="57j-mZ-BkM" id="40f-fg-4bf"/>
+                                    <outlet property="busLabelImage" destination="peg-SW-LTm" id="h9q-Xf-tv9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tXf-Mb-FlJ" id="oFv-VG-Xxi"/>
+                            <outlet property="delegate" destination="tXf-Mb-FlJ" id="Ghx-uH-gHS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QDh-wI-I8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="451"/>
+        </scene>
+    </scenes>
 </document>
