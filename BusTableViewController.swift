@@ -224,7 +224,7 @@ class BusTableViewController: UITableViewController {
             var route_short_name: NSString = rowData["route_short_name"] as! NSString
             var route_id: NSString = rowData["route_id"] as! NSString
             let tmp = "Hai premuto \(route_short_name) con route_id \(route_id)"
-            detailBusController.tmp_string = tmp
+            detailBusController.route_id = route_id as String
         }
         
     }

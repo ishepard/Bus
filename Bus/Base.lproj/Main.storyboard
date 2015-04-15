@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BusTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusTableCell" rowHeight="89" id="mir-LG-7eF" customClass="BusTableViewCell" customModule="Bus" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BusTableCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="BusTableCell" rowHeight="89" id="mir-LG-7eF" customClass="BusTableViewCell" customModule="Bus" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="22" width="320" height="89"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mir-LG-7eF" id="oH6-h9-ewc">
@@ -77,32 +77,33 @@
         <scene sceneID="Q50-cA-81e">
             <objects>
                 <tableViewController id="yBy-xp-5co" customClass="BusDetailTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="0Er-MI-m9F">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="0Er-MI-m9F">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BusDetailCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusDetailCell" id="bzB-eT-x8o" customClass="BusDetailTableViewCell" customModule="Bus" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="BusDetailCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusDetailCell" rowHeight="65" id="bzB-eT-x8o" customClass="BusDetailTableViewCell" customModule="Bus" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bzB-eT-x8o" id="IXo-gh-HO8">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTN-MJ-uWn">
-                                            <rect key="frame" x="8" y="4" width="584" height="35"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTN-MJ-uWn">
+                                            <rect key="frame" x="16" y="4" width="568" height="54"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="centerY" secondItem="IXo-gh-HO8" secondAttribute="centerY" id="0i0-sn-bkH"/>
-                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="top" secondItem="IXo-gh-HO8" secondAttribute="topMargin" constant="-4" id="esc-vM-GMd"/>
-                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="leading" secondItem="IXo-gh-HO8" secondAttribute="leadingMargin" constant="-7" id="qDF-9z-EtA"/>
-                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="centerX" secondItem="IXo-gh-HO8" secondAttribute="centerX" id="xC1-2t-dtO"/>
+                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="top" secondItem="IXo-gh-HO8" secondAttribute="topMargin" constant="-4" id="01z-Pf-iPP"/>
+                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="centerX" secondItem="IXo-gh-HO8" secondAttribute="centerX" id="1Ja-ky-0PZ"/>
+                                        <constraint firstItem="RTN-MJ-uWn" firstAttribute="leading" secondItem="IXo-gh-HO8" secondAttribute="leadingMargin" constant="1" id="JNL-nf-Ou6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RTN-MJ-uWn" secondAttribute="bottom" constant="-2" id="OT8-Lg-2H4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="busDetailLabel" destination="RTN-MJ-uWn" id="kYl-Ql-PqT"/>
+                                    <segue destination="PIl-ce-ceS" kind="show" identifier="showStops" id="VcM-Ii-LmU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -116,6 +117,89 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mh8-9B-397" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1999" y="462"/>
+        </scene>
+        <!--Stops-->
+        <scene sceneID="JcV-Hu-buQ">
+            <objects>
+                <tableViewController id="PIl-ce-ceS" customClass="BusStopsTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="3Im-hq-tzG">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" rowHeight="56" id="AgW-Yp-9bZ" customClass="BusStopsTableViewCell" customModule="Bus" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AgW-Yp-9bZ" id="ehm-jd-suY">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-sj-vG8">
+                                            <rect key="frame" x="18" y="8" width="565" height="39"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dQh-sj-vG8" firstAttribute="bottom" secondItem="ehm-jd-suY" secondAttribute="bottomMargin" id="104-Fi-uzj"/>
+                                        <constraint firstItem="dQh-sj-vG8" firstAttribute="centerX" secondItem="ehm-jd-suY" secondAttribute="centerX" id="axu-4T-U5h"/>
+                                        <constraint firstItem="dQh-sj-vG8" firstAttribute="top" secondItem="ehm-jd-suY" secondAttribute="topMargin" id="b15-1N-L6h"/>
+                                        <constraint firstItem="dQh-sj-vG8" firstAttribute="leading" secondItem="ehm-jd-suY" secondAttribute="leadingMargin" constant="3" id="wqw-as-S0m"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busStopCell" destination="dQh-sj-vG8" id="9vy-TZ-PAU"/>
+                                    <segue destination="Nr1-Mc-d9o" kind="show" identifier="showSchedule" id="QeV-kh-Dsm"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PIl-ce-ceS" id="2rV-BL-gId"/>
+                            <outlet property="delegate" destination="PIl-ce-ceS" id="d8J-oo-WZI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Stops" id="nv8-Ns-9oV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gGd-nn-iE7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2919" y="451"/>
+        </scene>
+        <!--Schedule-->
+        <scene sceneID="US7-nf-pEc">
+            <objects>
+                <tableViewController id="Nr1-Mc-d9o" customClass="BusScheduleTableViewController" customModule="Bus" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="67" sectionHeaderHeight="22" sectionFooterHeight="22" id="EfM-Fb-bB6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusScheduleCell" rowHeight="67" id="qOS-Tn-yff" customClass="BusScheduleTableViewCell" customModule="Bus" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qOS-Tn-yff" id="1MM-Bc-5MS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e4-Ky-1qS">
+                                            <rect key="frame" x="16" y="8" width="289" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busScheduleLabel" destination="2e4-Ky-1qS" id="Qyr-Sm-CRt"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Nr1-Mc-d9o" id="8uk-LB-s4A"/>
+                            <outlet property="delegate" destination="Nr1-Mc-d9o" id="i2V-kz-zdX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Schedule" id="E1g-U6-vnI"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NWi-7C-NuV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3952" y="451"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HxQ-rb-lrz">

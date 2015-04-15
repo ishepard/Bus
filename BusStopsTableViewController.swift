@@ -1,26 +1,24 @@
 //
-//  BusDetailTableViewController.swift
+//  BusStopsTableViewController.swift
 //  Bus
 //
-//  Created by Davide Spadini on 14/04/15.
+//  Created by Davide Spadini on 15/04/15.
 //  Copyright (c) 2015 Davide Spadini. All rights reserved.
 //
 
 import UIKit
 
-class BusDetailTableViewController: UITableViewController {
-    var tableDirections = []
-    var to_send = []
-    var route_id: String?
-
+class BusStopsTableViewController: UITableViewController {
+    var direction : Int?
+    var recv : NSArray = []
+    var route_id : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let a = route_id {
-            showDirections()
+
+        if let a = direction {
             self.tableView.reloadData()
         }
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -44,71 +42,19 @@ class BusDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return tableDirections.count
+        //println(recv.count)
+        return recv.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier( "BusDetailCell", forIndexPath: indexPath) as! BusDetailTableViewCell
-        
-        let direction: AnyObject = self.tableDirections[indexPath.row]
-        cell.busDetailLabel.text = direction as! String
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("BusStopCell", forIndexPath: indexPath) as! BusStopsTableViewCell
+
+        //cell.busStopCell.text = recv[direction!]["stop_name"] as! String
+        // Configure the cell...
+        cell.busStopCell.text = recv[indexPath.row]["stop_name"] as! String
+
         return cell
-    }
-    
-    func showDirections(){
-        let urlPath = "http://gtfs-provider.herokuapp.com/api/stops/trentino-trasporti-esercizio-spa/" + route_id!
-        let url = NSURL(string: urlPath)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
-            println("Task completed")
-            if(error != nil) {
-                // If there is an error in the web request, print it to the console
-                println(error.localizedDescription)
-            }
-            var err: NSError?
-
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSArray
-            if(err != nil) {
-                // If there is an error parsing JSON, print it to the console
-                println("JSON Error \(err!.localizedDescription)")
-            }
-            
-            self.to_send = jsonResult
-            
-            var result : Array = ["", ""]
-            
-            var dir_0: NSArray = jsonResult[0]["stops"] as! NSArray
-            var len_dir_0 = dir_0.count - 1
-            var from_0 = dir_0[0]["stop_name"] as! String
-            var to_0 = dir_0[len_dir_0]["stop_name"] as! String
-            var from = "From " + from_0 + "\nto " + to_0
-            
-            if (from_0 != to_0){
-                result[0] = from
-            } else {
-                result[0] = "Circolare"
-            }
-
-            if jsonResult.count == 2 {
-                var dir_1: NSArray = jsonResult[1]["stops"] as! NSArray
-                var len_dir_1 = dir_1.count - 1
-                var from_1 = dir_1[0]["stop_name"] as! String
-                var to_1 = dir_1[len_dir_1]["stop_name"] as! String
-                var to = "From " + from_1 + "\nto " + to_1
-                
-                result[1] = to
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableDirections = result
-                self.tableView.reloadData()
-            })
-        })
-        
-        task.resume()
-
     }
     
 
@@ -154,13 +100,13 @@ class BusDetailTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if segue.identifier == "showStops"{
-            let busStopsController = segue.destinationViewController as! BusStopsTableViewController
+        if segue.identifier == "showSchedule"{
+            let busScheduleController = segue.destinationViewController as! BusScheduleTableViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow()
             let row = myIndexPath?.row
-            busStopsController.direction = row
-            busStopsController.recv = self.to_send[row!]["stops"] as! NSArray
-            busStopsController.route_id = self.route_id
+            busScheduleController.stop_id = recv[row!]["stop_id"] as! String
+            busScheduleController.route_id = self.route_id
+            busScheduleController.direction = self.direction
         }
     }
 
