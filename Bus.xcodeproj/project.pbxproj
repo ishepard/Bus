@@ -14,6 +14,7 @@
 		8737A4E01ADC1E5A00E8FF0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8737A4DF1ADC1E5A00E8FF0C /* Images.xcassets */; };
 		8737A4E31ADC1E5A00E8FF0C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8737A4E11ADC1E5A00E8FF0C /* LaunchScreen.xib */; };
 		8737A4EF1ADC1E5B00E8FF0C /* BusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A4EE1ADC1E5B00E8FF0C /* BusTests.swift */; };
+		8762BD031ADE835A00C1FF9D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8762BD021ADE835A00C1FF9D /* Entitlements.plist */; };
 		87E168C71ADD9CB100AE37B6 /* BusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */; };
 		87E168C91ADD9E0000AE37B6 /* BusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */; };
 		87FA643A1ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */; };
@@ -45,6 +46,7 @@
 		8737A4E81ADC1E5B00E8FF0C /* BusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8737A4ED1ADC1E5B00E8FF0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8737A4EE1ADC1E5B00E8FF0C /* BusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTests.swift; sourceTree = "<group>"; };
+		8762BD021ADE835A00C1FF9D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewController.swift; sourceTree = "<group>"; };
 		87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 		8737A4CA1ADC1E5A00E8FF0C = {
 			isa = PBXGroup;
 			children = (
+				8762BD021ADE835A00C1FF9D /* Entitlements.plist */,
 				87FA643B1ADDCFE100DCCF68 /* BusScheduleTableViewCell.swift */,
 				87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */,
 				87FA64441ADDD2A400DCCF68 /* BusStopsTableViewCell.swift */,
@@ -219,6 +222,7 @@
 				870A7B9B1ADC353700BDB89E /* 1.jpg in Resources */,
 				8737A4E31ADC1E5A00E8FF0C /* LaunchScreen.xib in Resources */,
 				8737A4E01ADC1E5A00E8FF0C /* Images.xcassets in Resources */,
+				8762BD031ADE835A00C1FF9D /* Entitlements.plist in Resources */,
 				87FA643F1ADDD14C00DCCF68 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,7 +308,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -323,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -349,7 +355,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -362,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,7 +382,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bus/asu_pid.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = Bus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -384,7 +395,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bus/asu_pid.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = Bus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -77,8 +77,8 @@ class BusTableViewController: UITableViewController {
                 blue: blue_float,
                 alpha: CGFloat(1.0)
             )
-            cell.busLabel.textColor = background_color
         }
+        cell.busLabel.textColor = background_color
         
         // 
         let imageSize = CGSize(width: 150, height: 150)
@@ -133,30 +133,33 @@ class BusTableViewController: UITableViewController {
             }
             var err: NSError?
             
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! [Dictionary<String, String>]
-            if(err != nil) {
-                // If there is an error parsing JSON, print it to the console
+            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? [Dictionary<String, String>] {
+                
+                let result = sorted(jsonResult) {
+                    var o1 = $0["route_short_name"]!.toInt()
+                    var o2 = $1["route_short_name"]!.toInt()
+                    
+                    if (o1 != nil){
+                        if (o2 != nil){
+                            return o1 < o2
+                        }
+                        return true
+                    } else if (o2 != nil) {
+                        return false
+                    } else {
+                        return $0["route_short_name"] < $1["route_short_name"]
+                    }
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableData = result
+                    self.tableView.reloadData()
+                })
+                
+            } else {
                 println("JSON Error \(err!.localizedDescription)")
             }
             
-            let result = sorted(jsonResult) {
-                var o1 = $0["route_short_name"]!.toInt()
-                var o2 = $1["route_short_name"]!.toInt()
-
-                if (o1 != nil){
-                    if (o2 != nil){
-                        return o1 < o2
-                    }
-                    return true
-                } else {
-                    return $0["route_short_name"] < $1["route_short_name"]
-                }
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableData = result
-                self.tableView.reloadData()
-            })
         })
         
         task.resume()

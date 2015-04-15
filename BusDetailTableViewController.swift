@@ -52,7 +52,7 @@ class BusDetailTableViewController: UITableViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier( "BusDetailCell", forIndexPath: indexPath) as! BusDetailTableViewCell
         
         let direction: AnyObject = self.tableDirections[indexPath.row]
-        cell.busDetailLabel.text = direction as! String
+        cell.busDetailLabel.text = direction as? String
         
         return cell
     }
@@ -69,42 +69,43 @@ class BusDetailTableViewController: UITableViewController {
             }
             var err: NSError?
 
-            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSArray
-            if(err != nil) {
-                // If there is an error parsing JSON, print it to the console
+            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray{
+                
+                self.to_send = jsonResult
+                
+                var result : Array = ["", ""]
+                
+                var dir_0: NSArray = jsonResult[0]["stops"] as! NSArray
+                var len_dir_0 = dir_0.count - 1
+                var from_0 = dir_0[0]["stop_name"] as! String
+                var to_0 = dir_0[len_dir_0]["stop_name"] as! String
+                var from = "From " + from_0 + "\nto " + to_0
+                
+                if (from_0 != to_0){
+                    result[0] = from
+                } else {
+                    result[0] = "Circolare"
+                }
+                
+                if jsonResult.count == 2 {
+                    var dir_1: NSArray = jsonResult[1]["stops"] as! NSArray
+                    var len_dir_1 = dir_1.count - 1
+                    var from_1 = dir_1[0]["stop_name"] as! String
+                    var to_1 = dir_1[len_dir_1]["stop_name"] as! String
+                    var to = "From " + from_1 + "\nto " + to_1
+                    
+                    result[1] = to
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableDirections = result
+                    self.tableView.reloadData()
+                })
+                
+            } else {
                 println("JSON Error \(err!.localizedDescription)")
             }
             
-            self.to_send = jsonResult
-            
-            var result : Array = ["", ""]
-            
-            var dir_0: NSArray = jsonResult[0]["stops"] as! NSArray
-            var len_dir_0 = dir_0.count - 1
-            var from_0 = dir_0[0]["stop_name"] as! String
-            var to_0 = dir_0[len_dir_0]["stop_name"] as! String
-            var from = "From " + from_0 + "\nto " + to_0
-            
-            if (from_0 != to_0){
-                result[0] = from
-            } else {
-                result[0] = "Circolare"
-            }
-
-            if jsonResult.count == 2 {
-                var dir_1: NSArray = jsonResult[1]["stops"] as! NSArray
-                var len_dir_1 = dir_1.count - 1
-                var from_1 = dir_1[0]["stop_name"] as! String
-                var to_1 = dir_1[len_dir_1]["stop_name"] as! String
-                var to = "From " + from_1 + "\nto " + to_1
-                
-                result[1] = to
-            }
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableDirections = result
-                self.tableView.reloadData()
-            })
         })
         
         task.resume()

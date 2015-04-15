@@ -18,8 +18,8 @@ class BusScheduleTableViewController: UITableViewController {
         super.viewDidLoad()
 
         if let a = route_id {
-            println(a)
-            println(self.stop_id)
+//            println(a)
+//            println(self.stop_id)
             getSchedule()
         }
         // Uncomment the following line to preserve selection between presentations
@@ -32,7 +32,7 @@ class BusScheduleTableViewController: UITableViewController {
     func getSchedule(){
         let dir : String = String(direction!)
         let urlPath = "http://gtfs-provider.herokuapp.com/api/times/trentino-trasporti-esercizio-spa/" + route_id! + "/" + stop_id! + "/" + dir
-        println(urlPath)
+//        println(urlPath)
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in

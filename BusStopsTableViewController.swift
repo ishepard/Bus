@@ -52,7 +52,7 @@ class BusStopsTableViewController: UITableViewController {
 
         //cell.busStopCell.text = recv[direction!]["stop_name"] as! String
         // Configure the cell...
-        cell.busStopCell.text = recv[indexPath.row]["stop_name"] as! String
+        cell.busStopCell.text = recv[indexPath.row]["stop_name"] as? String
 
         return cell
     }
@@ -104,7 +104,7 @@ class BusStopsTableViewController: UITableViewController {
             let busScheduleController = segue.destinationViewController as! BusScheduleTableViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow()
             let row = myIndexPath?.row
-            busScheduleController.stop_id = recv[row!]["stop_id"] as! String
+            busScheduleController.stop_id = recv[row!]["stop_id"] as? String
             busScheduleController.route_id = self.route_id
             busScheduleController.direction = self.direction
         }
