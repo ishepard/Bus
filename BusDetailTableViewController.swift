@@ -12,7 +12,8 @@ class BusDetailTableViewController: UITableViewController {
     var tableDirections = []
     var to_send = []
     var route_id: String?
-
+    @IBOutlet weak var menuButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -14,6 +14,7 @@ class BusScheduleTableViewController: UITableViewController {
     var direction : Int?
     var tableSchedule = []
 
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 

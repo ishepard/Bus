@@ -4,10 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bus Widget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>Bus.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>BusWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -18,6 +28,16 @@
 			<true/>
 		</dict>
 		<key>8737A4E71ADC1E5B00E8FF0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8762BD071ADE920600C1FF9D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8762BD391ADEB06200C1FF9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

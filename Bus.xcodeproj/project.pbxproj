@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		870A7B951ADC23E500BDB89E /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870A7B941ADC23E500BDB89E /* BusTableViewController.swift */; };
 		870A7B971ADC23F700BDB89E /* BusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870A7B961ADC23F700BDB89E /* BusTableViewCell.swift */; };
-		870A7B9B1ADC353700BDB89E /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 870A7B9A1ADC353700BDB89E /* 1.jpg */; };
 		8737A4D91ADC1E5A00E8FF0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A4D81ADC1E5A00E8FF0C /* AppDelegate.swift */; };
 		8737A4E01ADC1E5A00E8FF0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8737A4DF1ADC1E5A00E8FF0C /* Images.xcassets */; };
 		8737A4E31ADC1E5A00E8FF0C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8737A4E11ADC1E5A00E8FF0C /* LaunchScreen.xib */; };
 		8737A4EF1ADC1E5B00E8FF0C /* BusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A4EE1ADC1E5B00E8FF0C /* BusTests.swift */; };
+		873BA4791AE00D5C004D7FDB /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 873BA4781AE00D5C004D7FDB /* SWRevealViewController.m */; };
+		873BA4811AE01420004D7FDB /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873BA4801AE01420004D7FDB /* MenuTableViewController.swift */; };
+		873BA4831AE015A4004D7FDB /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873BA4821AE015A4004D7FDB /* MenuTableViewCell.swift */; };
 		8762BD031ADE835A00C1FF9D /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8762BD021ADE835A00C1FF9D /* Entitlements.plist */; };
+		8762BD3B1ADEB06300C1FF9D /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8762BD0A1ADE920600C1FF9D /* NotificationCenter.framework */; };
+		8762BD401ADEB06300C1FF9D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8762BD3F1ADEB06300C1FF9D /* TodayViewController.swift */; };
+		8762BD421ADEB06300C1FF9D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8762BD411ADEB06300C1FF9D /* MainInterface.storyboard */; };
+		8762BD451ADEB06300C1FF9D /* Bus Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8762BD3A1ADEB06200C1FF9D /* Bus Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87E168C71ADD9CB100AE37B6 /* BusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */; };
 		87E168C91ADD9E0000AE37B6 /* BusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */; };
 		87FA643A1ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */; };
@@ -32,12 +38,32 @@
 			remoteGlobalIDString = 8737A4D21ADC1E5A00E8FF0C;
 			remoteInfo = Bus;
 		};
+		8762BD431ADEB06300C1FF9D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8737A4CB1ADC1E5A00E8FF0C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8762BD391ADEB06200C1FF9D;
+			remoteInfo = "Bus Widget";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8762BD191ADE920600C1FF9D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8762BD451ADEB06300C1FF9D /* Bus Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		870A7B941ADC23E500BDB89E /* BusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
 		870A7B961ADC23F700BDB89E /* BusTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewCell.swift; sourceTree = "<group>"; };
-		870A7B9A1ADC353700BDB89E /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = ../../../../1.jpg; sourceTree = "<group>"; };
 		8737A4D31ADC1E5A00E8FF0C /* Bus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8737A4D71ADC1E5A00E8FF0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8737A4D81ADC1E5A00E8FF0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +72,17 @@
 		8737A4E81ADC1E5B00E8FF0C /* BusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8737A4ED1ADC1E5B00E8FF0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8737A4EE1ADC1E5B00E8FF0C /* BusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTests.swift; sourceTree = "<group>"; };
+		873BA4761AE00D5B004D7FDB /* Bus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bus-Bridging-Header.h"; sourceTree = "<group>"; };
+		873BA4771AE00D5C004D7FDB /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
+		873BA4781AE00D5C004D7FDB /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../../../Downloads/SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		873BA4801AE01420004D7FDB /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		873BA4821AE015A4004D7FDB /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		8762BD021ADE835A00C1FF9D /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		8762BD0A1ADE920600C1FF9D /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		8762BD3A1ADEB06200C1FF9D /* Bus Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Bus Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8762BD3E1ADEB06300C1FF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8762BD3F1ADEB06300C1FF9D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		8762BD411ADEB06300C1FF9D /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewController.swift; sourceTree = "<group>"; };
 		87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -71,13 +107,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8762BD371ADEB06200C1FF9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8762BD3B1ADEB06300C1FF9D /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		8737A4CA1ADC1E5A00E8FF0C = {
 			isa = PBXGroup;
 			children = (
+				873BA4751AE00D43004D7FDB /* SWRevealViewController */,
 				8762BD021ADE835A00C1FF9D /* Entitlements.plist */,
+				873BA4821AE015A4004D7FDB /* MenuTableViewCell.swift */,
+				873BA4801AE01420004D7FDB /* MenuTableViewController.swift */,
 				87FA643B1ADDCFE100DCCF68 /* BusScheduleTableViewCell.swift */,
 				87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */,
 				87FA64441ADDD2A400DCCF68 /* BusStopsTableViewCell.swift */,
@@ -88,6 +135,8 @@
 				870A7B941ADC23E500BDB89E /* BusTableViewController.swift */,
 				8737A4D51ADC1E5A00E8FF0C /* Bus */,
 				8737A4EB1ADC1E5B00E8FF0C /* BusTests */,
+				8762BD3C1ADEB06300C1FF9D /* Bus Widget */,
+				8762BD091ADE920600C1FF9D /* Frameworks */,
 				8737A4D41ADC1E5A00E8FF0C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +146,7 @@
 			children = (
 				8737A4D31ADC1E5A00E8FF0C /* Bus.app */,
 				8737A4E81ADC1E5B00E8FF0C /* BusTests.xctest */,
+				8762BD3A1ADEB06200C1FF9D /* Bus Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,7 +166,6 @@
 		8737A4D61ADC1E5A00E8FF0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				870A7B9A1ADC353700BDB89E /* 1.jpg */,
 				8737A4D71ADC1E5A00E8FF0C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -139,6 +188,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		873BA4751AE00D43004D7FDB /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				873BA4771AE00D5C004D7FDB /* SWRevealViewController.h */,
+				873BA4781AE00D5C004D7FDB /* SWRevealViewController.m */,
+				873BA4761AE00D5B004D7FDB /* Bus-Bridging-Header.h */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		8762BD091ADE920600C1FF9D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8762BD0A1ADE920600C1FF9D /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8762BD3C1ADEB06300C1FF9D /* Bus Widget */ = {
+			isa = PBXGroup;
+			children = (
+				8762BD3F1ADEB06300C1FF9D /* TodayViewController.swift */,
+				8762BD411ADEB06300C1FF9D /* MainInterface.storyboard */,
+				8762BD3D1ADEB06300C1FF9D /* Supporting Files */,
+			);
+			path = "Bus Widget";
+			sourceTree = "<group>";
+		};
+		8762BD3D1ADEB06300C1FF9D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8762BD3E1ADEB06300C1FF9D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,10 +234,12 @@
 				8737A4CF1ADC1E5A00E8FF0C /* Sources */,
 				8737A4D01ADC1E5A00E8FF0C /* Frameworks */,
 				8737A4D11ADC1E5A00E8FF0C /* Resources */,
+				8762BD191ADE920600C1FF9D /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8762BD441ADEB06300C1FF9D /* PBXTargetDependency */,
 			);
 			name = Bus;
 			productName = Bus;
@@ -177,6 +264,23 @@
 			productReference = 8737A4E81ADC1E5B00E8FF0C /* BusTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8762BD391ADEB06200C1FF9D /* Bus Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8762BD461ADEB06300C1FF9D /* Build configuration list for PBXNativeTarget "Bus Widget" */;
+			buildPhases = (
+				8762BD361ADEB06200C1FF9D /* Sources */,
+				8762BD371ADEB06200C1FF9D /* Frameworks */,
+				8762BD381ADEB06200C1FF9D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bus Widget";
+			productName = "Bus Widget";
+			productReference = 8762BD3A1ADEB06200C1FF9D /* Bus Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +296,9 @@
 					8737A4E71ADC1E5B00E8FF0C = {
 						CreatedOnToolsVersion = 6.3;
 						TestTargetID = 8737A4D21ADC1E5A00E8FF0C;
+					};
+					8762BD391ADEB06200C1FF9D = {
+						CreatedOnToolsVersion = 6.3;
 					};
 				};
 			};
@@ -210,6 +317,7 @@
 			targets = (
 				8737A4D21ADC1E5A00E8FF0C /* Bus */,
 				8737A4E71ADC1E5B00E8FF0C /* BusTests */,
+				8762BD391ADEB06200C1FF9D /* Bus Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -219,7 +327,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870A7B9B1ADC353700BDB89E /* 1.jpg in Resources */,
 				8737A4E31ADC1E5A00E8FF0C /* LaunchScreen.xib in Resources */,
 				8737A4E01ADC1E5A00E8FF0C /* Images.xcassets in Resources */,
 				8762BD031ADE835A00C1FF9D /* Entitlements.plist in Resources */,
@@ -234,6 +341,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8762BD381ADEB06200C1FF9D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8762BD421ADEB06300C1FF9D /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -243,11 +358,14 @@
 			files = (
 				870A7B971ADC23F700BDB89E /* BusTableViewCell.swift in Sources */,
 				87FA643C1ADDCFE100DCCF68 /* BusScheduleTableViewCell.swift in Sources */,
+				873BA4831AE015A4004D7FDB /* MenuTableViewCell.swift in Sources */,
+				873BA4811AE01420004D7FDB /* MenuTableViewController.swift in Sources */,
 				87FA643A1ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift in Sources */,
 				87E168C91ADD9E0000AE37B6 /* BusDetailTableViewCell.swift in Sources */,
 				87FA64451ADDD2A400DCCF68 /* BusStopsTableViewCell.swift in Sources */,
 				87E168C71ADD9CB100AE37B6 /* BusDetailTableViewController.swift in Sources */,
 				870A7B951ADC23E500BDB89E /* BusTableViewController.swift in Sources */,
+				873BA4791AE00D5C004D7FDB /* SWRevealViewController.m in Sources */,
 				8737A4D91ADC1E5A00E8FF0C /* AppDelegate.swift in Sources */,
 				87FA64471ADDD2B400DCCF68 /* BusStopsTableViewController.swift in Sources */,
 			);
@@ -261,6 +379,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8762BD361ADEB06200C1FF9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8762BD401ADEB06300C1FF9D /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -268,6 +394,11 @@
 			isa = PBXTargetDependency;
 			target = 8737A4D21ADC1E5A00E8FF0C /* Bus */;
 			targetProxy = 8737A4E91ADC1E5B00E8FF0C /* PBXContainerItemProxy */;
+		};
+		8762BD441ADEB06300C1FF9D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8762BD391ADEB06200C1FF9D /* Bus Widget */;
+			targetProxy = 8762BD431ADEB06300C1FF9D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -382,12 +513,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Bus/asu_pid.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = Bus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -395,12 +529,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Bus/asu_pid.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				INFOPLIST_FILE = Bus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Bus-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -438,6 +574,34 @@
 			};
 			name = Release;
 		};
+		8762BD471ADEB06300C1FF9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Bus Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8762BD481ADEB06300C1FF9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				INFOPLIST_FILE = "Bus Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -464,6 +628,15 @@
 			buildConfigurations = (
 				8737A4F61ADC1E5B00E8FF0C /* Debug */,
 				8737A4F71ADC1E5B00E8FF0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8762BD461ADEB06300C1FF9D /* Build configuration list for PBXNativeTarget "Bus Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8762BD471ADEB06300C1FF9D /* Debug */,
+				8762BD481ADEB06300C1FF9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

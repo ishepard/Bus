@@ -10,10 +10,27 @@ import UIKit
 
 class BusTableViewController: UITableViewController {
     var tableData: [Dictionary<String,String>] = []
-    var busImages = "1.jpg"
+    var favorite: [Dictionary<String, NSString>] = []
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // TO CANCEL
+        defaults.removeObjectForKey("obj")
+        
+        
+        if let obj: NSArray = defaults.arrayForKey("obj"){
+            self.favorite = obj as! [Dictionary<String, NSString>]
+        }
+
+        if self.revealViewController() != nil {
+            menuButton.target = self.revealViewController()
+            menuButton.action = "revealToggle:"
+            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        }
         
         list_of_bus("/api/routes/trentino-trasporti-esercizio-spa")
         self.tableView.scrollEnabled = true
@@ -216,9 +233,7 @@ class BusTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-        
+
         if segue.identifier == "ShowBusDetail"{
             let detailBusController = segue.destinationViewController as! BusDetailTableViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow()
@@ -226,10 +241,29 @@ class BusTableViewController: UITableViewController {
             let rowData = self.tableData[row!]
             var route_short_name: NSString = rowData["route_short_name"] as! NSString
             var route_id: NSString = rowData["route_id"] as! NSString
-            let tmp = "Hai premuto \(route_short_name) con route_id \(route_id)"
+            var route_color: NSString = rowData["route_color"] as! NSString
+            var route_long_name: NSString = rowData["route_long_name"] as! NSString
+            prepare_storage(route_id, route_short_name: route_short_name, route_color: route_color, route_long_name: route_long_name)
+
             detailBusController.route_id = route_id as String
         }
         
+    }
+    
+    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString){
+        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name]
+        var to_append = true
+        for n in self.favorite{
+            if (n["route_short_name"] == dict["route_short_name"] && n["route_id"] == dict["route_id"]){
+                to_append = false
+                break
+            }
+        }
+        if (to_append == true ){
+            self.favorite.append(dict)
+        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(self.favorite, forKey: "obj")
     }
     
 

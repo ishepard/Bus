@@ -13,6 +13,7 @@ class BusStopsTableViewController: UITableViewController {
     var recv : NSArray = []
     var route_id : String?
     
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
