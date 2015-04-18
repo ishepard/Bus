@@ -21,6 +21,8 @@
 		8762BD401ADEB06300C1FF9D /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8762BD3F1ADEB06300C1FF9D /* TodayViewController.swift */; };
 		8762BD421ADEB06300C1FF9D /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8762BD411ADEB06300C1FF9D /* MainInterface.storyboard */; };
 		8762BD451ADEB06300C1FF9D /* Bus Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8762BD3A1ADEB06200C1FF9D /* Bus Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		87BD63831AE2609A0044B12D /* EditFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD63821AE2609A0044B12D /* EditFavoritesTableViewController.swift */; };
+		87BD63851AE260AB0044B12D /* EditFavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BD63841AE260AB0044B12D /* EditFavoritesTableViewCell.swift */; };
 		87E168C71ADD9CB100AE37B6 /* BusDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */; };
 		87E168C91ADD9E0000AE37B6 /* BusDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */; };
 		87FA643A1ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */; };
@@ -83,6 +85,8 @@
 		8762BD3E1ADEB06300C1FF9D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8762BD3F1ADEB06300C1FF9D /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		8762BD411ADEB06300C1FF9D /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		87BD63821AE2609A0044B12D /* EditFavoritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavoritesTableViewController.swift; sourceTree = "<group>"; };
+		87BD63841AE260AB0044B12D /* EditFavoritesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewController.swift; sourceTree = "<group>"; };
 		87E168C81ADD9E0000AE37B6 /* BusDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusDetailTableViewCell.swift; sourceTree = "<group>"; };
 		87FA64391ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusScheduleTableViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 		8737A4CA1ADC1E5A00E8FF0C = {
 			isa = PBXGroup;
 			children = (
+				87BD63841AE260AB0044B12D /* EditFavoritesTableViewCell.swift */,
+				87BD63821AE2609A0044B12D /* EditFavoritesTableViewController.swift */,
 				873BA4751AE00D43004D7FDB /* SWRevealViewController */,
 				8762BD021ADE835A00C1FF9D /* Entitlements.plist */,
 				873BA4821AE015A4004D7FDB /* MenuTableViewCell.swift */,
@@ -356,11 +362,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BD63831AE2609A0044B12D /* EditFavoritesTableViewController.swift in Sources */,
 				870A7B971ADC23F700BDB89E /* BusTableViewCell.swift in Sources */,
 				87FA643C1ADDCFE100DCCF68 /* BusScheduleTableViewCell.swift in Sources */,
 				873BA4831AE015A4004D7FDB /* MenuTableViewCell.swift in Sources */,
 				873BA4811AE01420004D7FDB /* MenuTableViewController.swift in Sources */,
 				87FA643A1ADDCFBB00DCCF68 /* BusScheduleTableViewController.swift in Sources */,
+				87BD63851AE260AB0044B12D /* EditFavoritesTableViewCell.swift in Sources */,
 				87E168C91ADD9E0000AE37B6 /* BusDetailTableViewCell.swift in Sources */,
 				87FA64451ADDD2A400DCCF68 /* BusStopsTableViewCell.swift in Sources */,
 				87E168C71ADD9CB100AE37B6 /* BusDetailTableViewController.swift in Sources */,

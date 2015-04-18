@@ -1,29 +1,26 @@
 //
-//  MenuTableViewController.swift
+//  EditFavoritesTableViewController.swift
 //  Bus
 //
-//  Created by Davide Spadini on 16/04/15.
+//  Created by Davide Spadini on 18/04/15.
 //  Copyright (c) 2015 Davide Spadini. All rights reserved.
 //
 
 import UIKit
 
-class MenuTableViewController: UITableViewController {
-
-    var route_id : NSString = ""
-    var route_name : NSString = ""
-    var route_color: NSString = ""
-
+class EditFavoritesTableViewController: UITableViewController {
     var data_recv: [Dictionary<String, NSString>] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.editing = true
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         if let obj: NSArray = defaults.arrayForKey("obj"){
             self.data_recv = obj as! [Dictionary<String, NSString>]
         }
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -39,20 +36,6 @@ class MenuTableViewController: UITableViewController {
         }
         self.tableView.reloadData()
     }
-    
-    @IBAction func cancelEditingViewController(segue:UIStoryboardSegue) {
-        
-    }
-    
-    @IBAction func doneEditing(segue:UIStoryboardSegue) {
-        if let editFavoritesViewController = segue.sourceViewController as? EditFavoritesTableViewController {
-            
-            //add the new player to the players array
-            self.data_recv = editFavoritesViewController.data_recv
-            self.tableView.reloadData()
-        }
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,28 +55,27 @@ class MenuTableViewController: UITableViewController {
         // Return the number of rows in the section.
         return data_recv.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BusMenuCell", forIndexPath: indexPath) as! MenuTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("EditFavoritesCell", forIndexPath: indexPath) as! EditFavoritesTableViewCell
 
         var row = indexPath.row
         var obj = self.data_recv[row]
         
         // Configure the cell...
-        cell.busMenuLabel.text = obj["route_long_name"]! as String
-        cell.busMenuLabel.font = UIFont.boldSystemFontOfSize(12)
-
-        cell.busNumberMenuLabel.font = UIFont.boldSystemFontOfSize(30)
-        cell.busNumberMenuLabel.textColor = UIColor.whiteColor()
-        cell.busNumberMenuLabel.text = obj["route_short_name"]! as String
+        cell.longNameLabel.text = obj["route_long_name"]! as String
+        cell.longNameLabel.font = UIFont.boldSystemFontOfSize(12)
+        
+        cell.shortNameLabel.font = UIFont.boldSystemFontOfSize(15)
+        cell.shortNameLabel.textColor = UIColor.whiteColor()
+        cell.shortNameLabel.text = obj["route_short_name"]! as String
         
         var background_color = UIColor.blackColor()
-        self.route_color = obj["route_color"]! as String
-        if (self.route_color != ""){
-            var red = self.route_color .substringWithRange(NSMakeRange(0, 2))
-            var green = self.route_color .substringWithRange(NSMakeRange(2, 2))
-            var blue = self.route_color .substringWithRange(NSMakeRange(4, 2))
+        var route_color = obj["route_color"]! as NSString
+        if (route_color != ""){
+            var red = route_color .substringWithRange(NSMakeRange(0, 2))
+            var green = route_color .substringWithRange(NSMakeRange(2, 2))
+            var blue = route_color .substringWithRange(NSMakeRange(4, 2))
             var red_float = CGFloat(strtoul(red, nil, 16)) / 255.0
             var green_float = CGFloat(strtoul(green, nil, 16)) / 255.0
             var blue_float = CGFloat(strtoul(blue, nil, 16)) / 255.0
@@ -104,14 +86,13 @@ class MenuTableViewController: UITableViewController {
                 alpha: CGFloat(1.0)
             )
         }
-        cell.busMenuLabel.textColor = background_color
-        
-        //
+        cell.longNameLabel.textColor = background_color
+
         let imageSize = CGSize(width: 57, height: 57)
         let image = drawCustomImage(imageSize, color: background_color)
-        cell.busMenuImage.image = image
-
-
+        cell.busImage.image = image
+        
+        
         return cell
     }
     
@@ -132,53 +113,55 @@ class MenuTableViewController: UITableViewController {
         return image
     }
 
-    
-    // Override to support conditional editing of the table view.
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        // Return NO if you do not want the specified item to be editable.
-//        return true
-//    }
-
-
-    
-    // Override to support editing the table view.
-//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.Delete {
-//
-//            self.data_recv.removeAtIndex(indexPath.row)
-//            
-//            let defaults = NSUserDefaults.standardUserDefaults()
-//            defaults.setObject(self.data_recv, forKey: "obj")
-//
-//            // Delete the row from the data source
-//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-//        }
-//    }
-    
 
     /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    // Override to support conditional editing of the table view.
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // Return NO if you do not want the specified item to be editable.
+        return true
     }
     */
 
-    /*
+    
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            // Delete the row from the data source
+            self.data_recv.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+    }
+    
+
+    
+    // Override to support rearranging the table view.
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        var itemToMove = self.data_recv[fromIndexPath.row]
+        self.data_recv.removeAtIndex(fromIndexPath.row)
+        self.data_recv.insert(itemToMove, atIndex: toIndexPath.row)
+    }
+    
+
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the item to be re-orderable.
         return true
     }
-    */
+    
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "DoneSegueButton" {
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(self.data_recv, forKey: "obj")
+        }
     }
-    */
+
 
 }
