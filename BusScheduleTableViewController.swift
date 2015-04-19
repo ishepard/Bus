@@ -19,10 +19,17 @@ class BusScheduleTableViewController: UITableViewController {
         super.viewDidLoad()
 
         if let a = route_id {
-//            println(a)
-//            println(self.stop_id)
+            println(a)
+            println(self.stop_id)
+            println(self.direction)
             getSchedule()
         }
+        
+//        if self.revealViewController() != nil {
+//            menuButton.target = self.revealViewController()
+//            menuButton.action = "revealToggle:"
+//            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+//        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,7 +40,6 @@ class BusScheduleTableViewController: UITableViewController {
     func getSchedule(){
         let dir : String = String(direction!)
         let urlPath = "http://gtfs-provider.herokuapp.com/api/times/trentino-trasporti-esercizio-spa/" + route_id! + "/" + stop_id! + "/" + dir
-//        println(urlPath)
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -45,6 +51,8 @@ class BusScheduleTableViewController: UITableViewController {
             var err: NSError?
             
             if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray {
+                
+                println(jsonResult)
             
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableSchedule = jsonResult

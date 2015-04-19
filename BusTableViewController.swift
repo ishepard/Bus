@@ -252,15 +252,14 @@ class BusTableViewController: UITableViewController {
             var route_id: NSString = rowData["route_id"] as! NSString
             var route_color: NSString = rowData["route_color"] as! NSString
             var route_long_name: NSString = rowData["route_long_name"] as! NSString
-            prepare_storage(route_id, route_short_name: route_short_name, route_color: route_color, route_long_name: route_long_name)
+            prepare_storage(route_id, route_short_name: route_short_name, route_color: route_color, route_long_name: route_long_name, direction: "0")
 
             detailBusController.route_id = route_id as String
         }
-        
     }
     
-    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString){
-        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name]
+    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString, direction: NSString){
+        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name, "direction": "0", "stop_id" : "344"]
         var to_append = true
         for n in self.favorite{
             if (n["route_short_name"] == dict["route_short_name"] && n["route_id"] == dict["route_id"]){

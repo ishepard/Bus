@@ -22,6 +22,9 @@ class MenuTableViewController: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let obj: NSArray = defaults.arrayForKey("obj"){
             self.data_recv = obj as! [Dictionary<String, NSString>]
+            for n in self.data_recv{
+                println(n)
+            }
         }
 
         // Uncomment the following line to preserve selection between presentations
@@ -41,6 +44,10 @@ class MenuTableViewController: UITableViewController {
     }
     
     @IBAction func cancelEditingViewController(segue:UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func doneSchedule(segue:UIStoryboardSegue) {
         
     }
     
@@ -171,14 +178,26 @@ class MenuTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if segue.identifier == "choosedFavorite"{
+            let dest = segue.destinationViewController as! UINavigationController
+            let busScheduleController = dest.topViewController as! BusScheduleTableViewController
+            // let busScheduleController = segue.destinationViewController as! BusScheduleTableViewController
+            let myIndexPath = self.tableView.indexPathForSelectedRow()
+            let row = myIndexPath?.row
+            busScheduleController.stop_id = self.data_recv[row!]["stop_id"] as? String
+            busScheduleController.route_id = self.data_recv[row!]["route_id"] as? String
+            var direction = self.data_recv[row!]["direction"] as? String
+            var dir = direction!.toInt()
+            busScheduleController.direction = dir
+        }
     }
-    */
+    
 
 }

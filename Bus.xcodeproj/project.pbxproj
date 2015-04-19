@@ -127,8 +127,6 @@
 			children = (
 				87BD63841AE260AB0044B12D /* EditFavoritesTableViewCell.swift */,
 				87BD63821AE2609A0044B12D /* EditFavoritesTableViewController.swift */,
-				873BA4751AE00D43004D7FDB /* SWRevealViewController */,
-				8762BD021ADE835A00C1FF9D /* Entitlements.plist */,
 				873BA4821AE015A4004D7FDB /* MenuTableViewCell.swift */,
 				873BA4801AE01420004D7FDB /* MenuTableViewController.swift */,
 				87FA643B1ADDCFE100DCCF68 /* BusScheduleTableViewCell.swift */,
@@ -139,6 +137,8 @@
 				87E168C61ADD9CB100AE37B6 /* BusDetailTableViewController.swift */,
 				870A7B961ADC23F700BDB89E /* BusTableViewCell.swift */,
 				870A7B941ADC23E500BDB89E /* BusTableViewController.swift */,
+				8762BD021ADE835A00C1FF9D /* Entitlements.plist */,
+				873BA4751AE00D43004D7FDB /* SWRevealViewController */,
 				8737A4D51ADC1E5A00E8FF0C /* Bus */,
 				8737A4EB1ADC1E5B00E8FF0C /* BusTests */,
 				8762BD3C1ADEB06300C1FF9D /* Bus Widget */,
