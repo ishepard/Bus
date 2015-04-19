@@ -280,6 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <modalPageSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <segue destination="RxD-ed-C5P" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="hQg-Bs-w5U"/>
                         <segue destination="IAB-Tx-dt5" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="sfK-Ci-3ui"/>

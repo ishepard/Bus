@@ -194,7 +194,10 @@ class MenuTableViewController: UITableViewController {
             busScheduleController.stop_id = self.data_recv[row!]["stop_id"] as? String
             busScheduleController.route_id = self.data_recv[row!]["route_id"] as? String
             var direction = self.data_recv[row!]["direction"] as? String
+            print("Direction is ")
+            println(direction)
             var dir = direction!.toInt()
+            println(dir)
             busScheduleController.direction = dir
         }
     }

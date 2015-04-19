@@ -12,6 +12,9 @@ class BusDetailTableViewController: UITableViewController {
     var tableDirections = []
     var to_send = []
     var route_id: String?
+    var route_short_name : String?
+    var route_color : String?
+    var route_long_name :String?
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -163,6 +166,9 @@ class BusDetailTableViewController: UITableViewController {
             busStopsController.direction = row
             busStopsController.recv = self.to_send[row!]["stops"] as! NSArray
             busStopsController.route_id = self.route_id
+            busStopsController.route_short_name = self.route_short_name
+            busStopsController.route_color = self.route_color
+            busStopsController.route_long_name = self.route_long_name
         }
     }
 

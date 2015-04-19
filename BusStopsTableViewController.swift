@@ -12,6 +12,10 @@ class BusStopsTableViewController: UITableViewController {
     var direction : Int?
     var recv : NSArray = []
     var route_id : String?
+    var route_short_name : String?
+    var route_color : String?
+    var route_long_name :String?
+    var favorite: [Dictionary<String, NSString>] = []
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
@@ -20,11 +24,31 @@ class BusStopsTableViewController: UITableViewController {
         if let a = direction {
             self.tableView.reloadData()
         }
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // TO CANCEL
+        defaults.removeObjectForKey("obj")
+        
+        
+        if let obj: NSArray = defaults.arrayForKey("obj"){
+            self.favorite = obj as! [Dictionary<String, NSString>]
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let obj: NSArray = defaults.arrayForKey("obj"){
+            self.favorite = obj as! [Dictionary<String, NSString>]
+        }
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,17 +91,53 @@ class BusStopsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+//        if editingStyle == .Delete {
+//            // Delete the row from the data source
+//            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+//        } else if editingStyle == .Insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }    
     }
-    */
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
+        let saveClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            println("Save closure called")
+            println(self.route_id)
+            println(self.route_short_name)
+            println(self.route_long_name)
+            println(self.route_color)
+            println(self.direction)
+            var stop_id = self.recv[indexPath.row]["stop_id"] as? String
+            println(stop_id)
+            self.prepare_storage(self.route_id!, route_short_name: self.route_short_name!, route_color: self.route_color!, route_long_name: self.route_long_name!, direction: self.direction!, stop_id: stop_id!)
+            self.tableView.setEditing(false, animated: true)
+        }
+        
+        let saveAction = UITableViewRowAction(style: .Normal, title: "Add", handler: saveClosure)
+        
+        return [saveAction]
+    }
+    
+    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString, direction: Int, stop_id: NSString){
+        var dir : NSString = String(direction)
+        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name, "direction": dir, "stop_id" : stop_id]
+        var to_append = true
+        for n in self.favorite{
+            if (n["route_short_name"] == dict["route_short_name"] && n["route_id"] == dict["route_id"]){
+                to_append = false
+                break
+            }
+        }
+        if (to_append == true ){
+            self.favorite.append(dict)
+        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(self.favorite, forKey: "obj")
+    }
+    
 
     /*
     // Override to support rearranging the table view.
