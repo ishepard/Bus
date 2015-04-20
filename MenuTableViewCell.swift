@@ -13,6 +13,7 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var busMenuLabel: UILabel!
     @IBOutlet weak var busMenuImage: UIImageView!
     @IBOutlet weak var busNumberMenuLabel: UILabel!
+    @IBOutlet weak var busStopIdLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

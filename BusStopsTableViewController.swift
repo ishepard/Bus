@@ -15,6 +15,7 @@ class BusStopsTableViewController: UITableViewController {
     var route_short_name : String?
     var route_color : String?
     var route_long_name :String?
+    var direction_name : String?
     var favorite: [Dictionary<String, NSString>] = []
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
@@ -28,7 +29,7 @@ class BusStopsTableViewController: UITableViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // TO CANCEL
-        defaults.removeObjectForKey("obj")
+        // defaults.removeObjectForKey("obj")
         
         
         if let obj: NSArray = defaults.arrayForKey("obj"){
@@ -48,7 +49,6 @@ class BusStopsTableViewController: UITableViewController {
         if let obj: NSArray = defaults.arrayForKey("obj"){
             self.favorite = obj as! [Dictionary<String, NSString>]
         }
-        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,15 +104,23 @@ class BusStopsTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]?  {
         let saveClosure = { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            println("Save closure called")
-            println(self.route_id)
-            println(self.route_short_name)
-            println(self.route_long_name)
-            println(self.route_color)
-            println(self.direction)
+//            println("Save closure called")
+//            println(self.route_id)
+//            println(self.route_short_name)
+//            println(self.route_long_name)
+//            println(self.route_color)
+//            println(self.direction)
+            let alert = UIAlertController(title: "Added to Favorites", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
+            let Reportbutton = UIAlertAction(title: "Close", style: UIAlertActionStyle.Cancel , handler: nil)
+            alert.addAction(Reportbutton)
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+            
             var stop_id = self.recv[indexPath.row]["stop_id"] as? String
             println(stop_id)
-            self.prepare_storage(self.route_id!, route_short_name: self.route_short_name!, route_color: self.route_color!, route_long_name: self.route_long_name!, direction: self.direction!, stop_id: stop_id!)
+            var stop_name = self.recv[indexPath.row]["stop_name"] as? String
+            println(stop_name)
+            self.prepare_storage(self.route_id!, route_short_name: self.route_short_name!, route_color: self.route_color!, route_long_name: self.route_long_name!, direction: self.direction!,direction_name: self.direction_name!, stop_id: stop_id!, stop_name: stop_name!)
             self.tableView.setEditing(false, animated: true)
         }
         
@@ -121,13 +129,16 @@ class BusStopsTableViewController: UITableViewController {
         return [saveAction]
     }
     
-    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString, direction: Int, stop_id: NSString){
+    func prepare_storage(route_id: NSString, route_short_name: NSString, route_color: NSString, route_long_name: NSString, direction: Int, direction_name: NSString, stop_id: NSString, stop_name: NSString){
         var dir : NSString = String(direction)
-        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name, "direction": dir, "stop_id" : stop_id]
+        var dict: [String: NSString] = ["route_id": route_id, "route_short_name": route_short_name, "route_color": route_color, "route_long_name": route_long_name, "direction": dir, "stop_id" : stop_id, "stop_name": stop_name, "direction_name": direction_name]
         var to_append = true
+        println(dict)
         for n in self.favorite{
-            if (n["route_short_name"] == dict["route_short_name"] && n["route_id"] == dict["route_id"]){
+            println(n)
+            if (n["route_id"] == dict["route_id"] && n["stop_id"] == dict["stop_id"]){
                 to_append = false
+                println("I haven't to append")
                 break
             }
         }

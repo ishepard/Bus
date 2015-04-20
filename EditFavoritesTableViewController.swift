@@ -63,8 +63,11 @@ class EditFavoritesTableViewController: UITableViewController {
         var obj = self.data_recv[row]
         
         // Configure the cell...
-        cell.longNameLabel.text = obj["route_long_name"]! as String
-        cell.longNameLabel.font = UIFont.boldSystemFontOfSize(12)
+        cell.longNameLabel.text = obj["direction_name"]! as String
+        cell.longNameLabel.font = UIFont.boldSystemFontOfSize(11)
+        
+        cell.stopNameLabel.text = obj["stop_name"]! as String
+        cell.stopNameLabel.font = UIFont.boldSystemFontOfSize(11)
         
         cell.shortNameLabel.font = UIFont.boldSystemFontOfSize(15)
         cell.shortNameLabel.textColor = UIColor.whiteColor()
@@ -88,7 +91,7 @@ class EditFavoritesTableViewController: UITableViewController {
         }
         cell.longNameLabel.textColor = background_color
 
-        let imageSize = CGSize(width: 40, height: 40)
+        let imageSize = CGSize(width: 50, height: 50)
         let image = drawCustomImage(imageSize, color: background_color)
         cell.busImage.image = image
         

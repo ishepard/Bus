@@ -15,6 +15,7 @@ class BusDetailTableViewController: UITableViewController {
     var route_short_name : String?
     var route_color : String?
     var route_long_name :String?
+    var direction = []
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -83,7 +84,7 @@ class BusDetailTableViewController: UITableViewController {
                 var len_dir_0 = dir_0.count - 1
                 var from_0 = dir_0[0]["stop_name"] as! String
                 var to_0 = dir_0[len_dir_0]["stop_name"] as! String
-                var from = "From " + from_0 + "\nto " + to_0
+                var from = "From " + from_0 + " to " + to_0
                 
                 if (from_0 != to_0){
                     result[0] = from
@@ -96,10 +97,11 @@ class BusDetailTableViewController: UITableViewController {
                     var len_dir_1 = dir_1.count - 1
                     var from_1 = dir_1[0]["stop_name"] as! String
                     var to_1 = dir_1[len_dir_1]["stop_name"] as! String
-                    var to = "From " + from_1 + "\nto " + to_1
+                    var to = "From " + from_1 + " to " + to_1
                     
                     result[1] = to
                 }
+                self.direction = result
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableDirections = result
@@ -164,6 +166,7 @@ class BusDetailTableViewController: UITableViewController {
             let myIndexPath = self.tableView.indexPathForSelectedRow()
             let row = myIndexPath?.row
             busStopsController.direction = row
+            busStopsController.direction_name = self.direction[row!] as? String
             busStopsController.recv = self.to_send[row!]["stops"] as! NSArray
             busStopsController.route_id = self.route_id
             busStopsController.route_short_name = self.route_short_name

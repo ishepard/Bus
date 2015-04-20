@@ -14,6 +14,7 @@ class EditFavoritesTableViewCell: UITableViewCell {
     @IBOutlet weak var longNameLabel: UILabel!
     @IBOutlet weak var shortNameLabel: UILabel!
     @IBOutlet weak var busImage: UIImageView!
+    @IBOutlet weak var stopNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -88,8 +88,11 @@ class MenuTableViewController: UITableViewController {
         var obj = self.data_recv[row]
         
         // Configure the cell...
-        cell.busMenuLabel.text = obj["route_long_name"]! as String
+        cell.busMenuLabel.text = obj["direction_name"]! as String
         cell.busMenuLabel.font = UIFont.boldSystemFontOfSize(12)
+        
+        cell.busStopIdLabel.text = obj["stop_name"]! as String
+        cell.busStopIdLabel.font = UIFont.boldSystemFontOfSize(12)
 
         cell.busNumberMenuLabel.font = UIFont.boldSystemFontOfSize(30)
         cell.busNumberMenuLabel.textColor = UIColor.whiteColor()
@@ -112,6 +115,7 @@ class MenuTableViewController: UITableViewController {
             )
         }
         cell.busMenuLabel.textColor = background_color
+//        cell.busStopIdLabel.textColor = background_color
         
         //
         let imageSize = CGSize(width: 57, height: 57)
@@ -194,10 +198,7 @@ class MenuTableViewController: UITableViewController {
             busScheduleController.stop_id = self.data_recv[row!]["stop_id"] as? String
             busScheduleController.route_id = self.data_recv[row!]["route_id"] as? String
             var direction = self.data_recv[row!]["direction"] as? String
-            print("Direction is ")
-            println(direction)
             var dir = direction!.toInt()
-            println(dir)
             busScheduleController.direction = dir
         }
     }

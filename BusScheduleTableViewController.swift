@@ -13,15 +13,15 @@ class BusScheduleTableViewController: UITableViewController {
     var route_id : String?
     var direction : Int?
     var tableSchedule = []
+    var my_sections = [Int: [String]]()
+    var keys_sec = []
+
 
     @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let a = route_id {
-            println(a)
-            println(self.stop_id)
-            println(self.direction)
             getSchedule()
         }
         
@@ -31,7 +31,7 @@ class BusScheduleTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    
     func getSchedule(){
         let dir : String = String(direction!)
         let urlPath = "http://gtfs-provider.herokuapp.com/api/times/trentino-trasporti-esercizio-spa/" + route_id! + "/" + stop_id! + "/" + dir
@@ -48,6 +48,8 @@ class BusScheduleTableViewController: UITableViewController {
             if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray {
                 
                 println(jsonResult)
+                
+                self.populate_sections(jsonResult)
             
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableSchedule = jsonResult
@@ -61,6 +63,21 @@ class BusScheduleTableViewController: UITableViewController {
         
         task.resume()
     }
+    
+    func populate_sections(arr: NSArray){
+        for n in arr{
+            var res = String(n as! NSString)
+            var myStringArr = res.componentsSeparatedByString(":")
+            var hour: Int = myStringArr[0].toInt()!
+            if (my_sections[hour] == nil){
+                my_sections[hour] = []
+            }
+            my_sections[hour]? += [res]
+
+        }
+        self.keys_sec = sorted(Array(my_sections.keys), sortFunc)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,20 +88,34 @@ class BusScheduleTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 1
+        return my_sections.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return tableSchedule.count
+        var num_sec = self.keys_sec[section] as! Int
+        return my_sections[num_sec]!.count
+    }
+    
+    func sortFunc(num1: Int, num2: Int) -> Bool {
+        return num1 < num2
     }
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        var num_sec = self.keys_sec[section] as! Int
+        return String(num_sec)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BusScheduleCell", forIndexPath: indexPath) as! BusScheduleTableViewCell
         
-        var myString: String = tableSchedule[indexPath.row] as! String
+        var num_sec = self.keys_sec[indexPath.section] as! Int
+        
+        var a: NSArray = my_sections[num_sec]!
+        var myString: String = a[indexPath.row] as! String
+
         var myStringArr = myString.componentsSeparatedByString(":")
         var res : String = myStringArr[0] + ":" + myStringArr[1]
         
