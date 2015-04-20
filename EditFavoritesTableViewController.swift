@@ -91,7 +91,7 @@ class EditFavoritesTableViewController: UITableViewController {
         }
         cell.longNameLabel.textColor = background_color
 
-        let imageSize = CGSize(width: 50, height: 50)
+        let imageSize = CGSize(width: 40, height: 40)
         let image = drawCustomImage(imageSize, color: background_color)
         cell.busImage.image = image
         
