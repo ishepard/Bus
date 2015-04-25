@@ -15,7 +15,8 @@ class BusDetailTableViewController: UITableViewController {
     var route_short_name : String?
     var route_color : String?
     var route_long_name :String?
-    var direction = []
+    var direction_0 = [NSDictionary]()
+    var direction_1 = [NSDictionary]()
     @IBOutlet weak var menuButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -49,21 +50,24 @@ class BusDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return self.to_send.count
+        return self.tableDirections.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCellWithIdentifier( "BusDetailCell", forIndexPath: indexPath) as! BusDetailTableViewCell
         
-        let direction: AnyObject = self.tableDirections[indexPath.row]
-        cell.busDetailLabel.text = direction as? String
+//        let direction: AnyObject = self.tableDirections[indexPath.row]
+//        cell.busDetailLabel.text = direction as? String
+        let direction = self.tableDirections[indexPath.row] as! String
+        cell.busDetailLabel.text = direction
+
         
         return cell
     }
     
     func showDirections(){
-        let urlPath = "http://gtfs-provider.herokuapp.com/api/stops/trentino-trasporti-esercizio-spa/" + route_id!
+        let urlPath = "http://waiting-for-the-bus.herokuapp.com/api/stops/trentino-trasporti-esercizio-spa/" + route_id!
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -74,34 +78,41 @@ class BusDetailTableViewController: UITableViewController {
             }
             var err: NSError?
 
-            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray{
+            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSDictionary {
                 
-                self.to_send = jsonResult
+                var res: NSArray = jsonResult["stops"] as! NSArray
                 
-                var result : Array = ["", ""]
+                for e in res{
+                    var el: Int = e["direction_id"] as! Int
+                    if (el == 0){
+                        self.direction_0.append(e as! NSDictionary)
+                    } else if (el == 1){
+                        self.direction_1.append(e as! NSDictionary)
+                    }
+                }
                 
-                var dir_0: NSArray = jsonResult[0]["stops"] as! NSArray
-                var len_dir_0 = dir_0.count - 1
-                var from_0 = dir_0[0]["stop_name"] as! String
-                var to_0 = dir_0[len_dir_0]["stop_name"] as! String
-                var from = "From " + from_0 + " to " + to_0
+//                println(self.direction_0)
+//                println(self.direction_1)
                 
-                if (from_0 != to_0){
-                    result[0] = from
+                var result: NSMutableArray = []
+                
+                // Andata
+                var from = self.direction_0[0]["stop_name"] as! String
+                var to = self.direction_0[self.direction_0.count - 1]["stop_name"] as! String
+                
+                if (from == to){
+                    result.addObject("Circolare")
                 } else {
-                    result[0] = "Circolare"
+                    result.addObject("From " + from + " to " + to)
                 }
                 
-                if jsonResult.count == 2 {
-                    var dir_1: NSArray = jsonResult[1]["stops"] as! NSArray
-                    var len_dir_1 = dir_1.count - 1
-                    var from_1 = dir_1[0]["stop_name"] as! String
-                    var to_1 = dir_1[len_dir_1]["stop_name"] as! String
-                    var to = "From " + from_1 + " to " + to_1
-                    
-                    result[1] = to
+                // Se c'è, aggiungo il ritorno
+                if (self.direction_1.count != 0){
+                    from = self.direction_1[0]["stop_name"] as! String
+                    to = self.direction_1[self.direction_1.count - 1]["stop_name"] as! String
+                    result.addObject("From " + from + " to " + to)
                 }
-                self.direction = result
+//                println(result)
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.tableDirections = result
@@ -117,7 +128,6 @@ class BusDetailTableViewController: UITableViewController {
         task.resume()
 
     }
-    
 
     /*
     // Override to support conditional editing of the table view.
@@ -166,8 +176,13 @@ class BusDetailTableViewController: UITableViewController {
             let myIndexPath = self.tableView.indexPathForSelectedRow()
             let row = myIndexPath?.row
             busStopsController.direction = row
-            busStopsController.direction_name = self.direction[row!] as? String
-            busStopsController.recv = self.to_send[row!]["stops"] as! NSArray
+            busStopsController.direction_name = self.tableDirections[row!] as? String
+            if (row == 0){
+                busStopsController.recv = self.direction_0
+            } else if (row == 1){
+                busStopsController.recv = self.direction_1
+            }
+
             busStopsController.route_id = self.route_id
             busStopsController.route_short_name = self.route_short_name
             busStopsController.route_color = self.route_color

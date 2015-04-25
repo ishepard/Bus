@@ -26,6 +26,7 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
         // Do any additional setup after loading the view from its nib.
 //        latitudeLabel.text = "Boooooh"
 //        longitudeLabel.text = "Booooooh"
+        println("Widget called")
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -38,10 +39,11 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
     }
     
     override func viewWillAppear(animated: Bool) {
+        println("Widget called")
         var currentSize: CGSize = self.preferredContentSize
         currentSize.height = 50.0
         self.preferredContentSize = currentSize
-        performWidgetUpdate()
+        //performWidgetUpdate()
     }
 
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
@@ -77,13 +79,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
             //self.near_stop(latitudeText, longitude: longitudeText)
             self.near_stop(lat, longitude: lon)
         }
+        self.near_stop("000", longitude: "000")
     }
     
     func near_stop(latitude: String, longitude: String) {
         NSLog("I'm in!!")
+        println("Im in!!")
+        self.stopLabel.text = "Loading....."
+        self.latitudeLabel.text = "Ciao"
+        self.longitudeLabel.text = "Ciao"
         
 //        let urlPath = "http://gtfs-provider.herokuapp.com/api/stopsNearby/" + latitude + "/" + longitude + "/0.1"
-        let urlPath = "http://gtfs-provider.herokuapp.com/api/stopsNearby/46.0553/11.1190/0.1"
+        let urlPath = "http://gtfs-provider2.herokuapp.com/api/stopsNearby/46.0553/11.1190/0.2"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -94,14 +101,18 @@ class TodayViewController: UIViewController, NCWidgetProviding, CLLocationManage
             }
             var err: NSError?
             
-            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSArray {
+            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSDictionary {
+
+//                println(jsonResult)
+                var res: NSArray = jsonResult["stops"] as! NSArray
                 
-                println(jsonResult)
-                NSLog(jsonResult[0]["stop_name"] as! String)
+//                println(res)
+                println(res[0]["stop_name"])
                 
-                self.stopLabel.text = jsonResult[0]["stop_name"] as! String
-                
-                
+                dispatch_async (dispatch_get_main_queue ()) {
+                    self.stopLabel.text = res[0]["stop_name"] as? String
+                }
+
             } else {
                 println("JSON Error \(err!.localizedDescription)")
             }

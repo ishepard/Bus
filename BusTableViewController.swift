@@ -148,7 +148,7 @@ class BusTableViewController: UITableViewController {
     
     func list_of_bus(searchTerm: String) {
         
-        let urlPath = "http://gtfs-provider.herokuapp.com\(searchTerm)"
+        let urlPath = "http://waiting-for-the-bus.herokuapp.com\(searchTerm)"
         let url = NSURL(string: urlPath)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url!, completionHandler: {data, response, error -> Void in
@@ -159,9 +159,11 @@ class BusTableViewController: UITableViewController {
             }
             var err: NSError?
             
-            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? [Dictionary<String, String>] {
+            if var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as? NSDictionary {
+                // println(jsonResult)
+                var res: [Dictionary<String, String>] = jsonResult["routes"] as! [Dictionary<String, String>]
                 
-                let result = sorted(jsonResult) {
+                let result = sorted(res) {
                     var o1 = $0["route_short_name"]!.toInt()
                     var o2 = $1["route_short_name"]!.toInt()
                     
